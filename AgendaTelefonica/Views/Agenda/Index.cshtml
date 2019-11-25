@@ -1,0 +1,127 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<script>
+    function valida(e) {
+        tecla = (document.all) ? e.keyCode : e.which;
+        //Tecla de retroceso para borrar, siempre la permite
+        if (tecla == 8) {
+            return true;
+        }
+        // Patron de entrada, en este caso solo acepta numeros
+        patron = /[0-9]/;
+        tecla_final = String.fromCharCode(tecla);
+        return patron.test(tecla_final);
+    }
+
+    function mayus(e) {
+        e.value = e.value.toUpperCase();
+    }
+</script>
+
+<div ng-controller="UsuarioController" class="row">
+    <div class="container">
+        <div class="row">
+            <h2>Agenda Telefonica</h2>
+            <div growl></div>
+            <div class="panel-group">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Ingrese Datos</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label class="" for="Bd">Tip Documento(*)</label>
+                                <select id="Bd" ng-model="tipodocUpd" class="form-control"
+                                        ng-options="item.id as item.Descripcion for item  in tipodoc " required>
+                                    <option value="">Seleccione</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="inlineFormInputGroup">Numero Documento(*)</label>
+                                <div class="input-group ">
+                                    <div class="input-group-addon"><i class="fa fa-id-card" aria-hidden="true"></i></div>
+                                    <input type="text" ng-model="documento" class="form-control" id="inlineFormInputGroup" placeholder="Cedula" onkeypress="return valida(event)">
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="inlineFormInputGroup">Primer Nombre</label>
+                                <div class="input-group ">
+                                    <div class="input-group-addon"><i class="fa fa-id-card" aria-hidden="true"></i></div>
+                                    <input type="text" ng-model="primerNombre" class="form-control" id="inlineFormInputGroup" placeholder="Primer Nombre" onkeyup="mayus(this)">
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="inlineFormInputGroup">Segundo Nombre</label>
+                                <div class="input-group ">
+                                    <div class="input-group-addon"><i class="fa fa-id-card" aria-hidden="true"></i></div>
+                                    <input type="text" ng-model="segundoNombre" class="form-control" id="inlineFormInputGroup" placeholder="Segundo Nombre" onkeyup="mayus(this)">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label for="inlineFormInputGroup">Primer Apellido</label>
+                                <div class="input-group ">
+                                    <div class="input-group-addon"><i class="fa fa-id-card" aria-hidden="true"></i></div>
+                                    <input type="text" ng-model="primerApellido" class="form-control" id="inlineFormInputGroup" placeholder="Primer Apellido" onkeyup="mayus(this)">
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="inlineFormInputGroup">Segundo Apellido</label>
+                                <div class="input-group ">
+                                    <div class="input-group-addon"><i class="fa fa-id-card" aria-hidden="true"></i></div>
+                                    <input type="text" ng-model="segundoApellido" class="form-control" id="inlineFormInputGroup" placeholder="Segundo Apellido" onkeyup="mayus(this)">
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="inlineFormInputGroup">Sexo</label>
+                                <div class="input-group ">
+                                    <div class="input-group-addon"><i class="fa fa-id-card" aria-hidden="true"></i></div>
+                                    <input type="text" ng-model="sexo" class="form-control" id="inlineFormInputGroup" placeholder="Sexo" onkeypress="return valida(event)">
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="inlineFormInputGroup">Direccion Residencia</label>
+                                <div class="input-group ">
+                                    <div class="input-group-addon"><i class="fa fa-id-card" aria-hidden="true"></i></div>
+                                    <input type="text" ng-model="direccionRes" class="form-control" id="inlineFormInputGroup" placeholder="Direccion" onkeyup="mayus(this)">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label for="inlineFormInputGroup">Telefono Celular</label>
+                                <div class="input-group ">
+                                    <div class="input-group-addon"><i class="fa fa-id-card" aria-hidden="true"></i></div>
+                                    <input type="text" ng-model="telefonoCel" class="form-control" id="inlineFormInputGroup" placeholder="Telefono" onkeypress="return valida(event)">
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="inlineFormInputGroup">Ciudad</label>
+                                <div class="input-group ">
+                                    <div class="input-group-addon"><i class="fa fa-id-card" aria-hidden="true"></i></div>
+                                    <input type="text" ng-model="ciudad" class="form-control" id="inlineFormInputGroup" placeholder="Ciudad" onkeypress="return valida(event)">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-lg-8"></div>
+                            <div class="col-lg-2">
+                                <button type="button" ng-click="InsertarUsr()" class="btn btn-primary"> <i class="fa fa-save" aria-hidden="true"></i> &nbsp; Crear  </button>
+                            </div>
+                            <div class="col-lg-2">
+                                <button class="btn btn-default  pull-right" onclick="location.reload()" type="button"><i class="fa fa-recycle" aria-hidden="true"></i>&nbsp;Limpiar Pantalla</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
+    </div>
+</div>
+
+
