@@ -119,8 +119,50 @@
                         </div>
                     </div>
                 </div>
+                <div class="panel panel-danger">
+                    <div class="panel-heading">Actualizar Datos</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label>Tipo Documento</label>
+                                <select id="Bd" ng-model="tipodocUpd" class="form-control"
+                                        ng-options="item.id as item.Descripcion for item  in tipodoc " required>
+                                    <option value="">Seleccione</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-3">
+                                <label>Numero Documento</label>
+                                <div class="input-group ">
+                                    <div class="input-group-addon"><i class="fa fa-id-card" aria-hidden="true"></i></div>
+                                    <input type="text" ng-model="UpdDocumento" class="form-control" id="inlineFormInputGroup" placeholder="Cedula" onkeypress="return valida(event)">
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="inlineFormInputGroup">Primer Nombre</label>
+                                <div class="input-group ">
+                                    <div class="input-group-addon"><i class="fa fa-id-card" aria-hidden="true"></i></div>
+                                    <input type="text" ng-model="authobjupd.PrimerNombre" class="form-control" id="inlineFormInputGroup" placeholder="Primer Nombre" onkeyup="mayus(this)">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-lg-6"></div>
+                            <div class="col-lg-2">
+                                <button type="button" ng-click="GetUsu()" class="btn btn-primary"> <i class="fa fa-save" aria-hidden="true"></i> &nbsp; Buscar  </button>
+                            </div>
+                            <div class="col-lg-2">
+                                <button type="button" ng-click="GetUsu()" class="btn btn-danger"> <i class="fa fa-save" aria-hidden="true"></i> &nbsp; Actualizar  </button>
+                            </div>
+                            <div class="col-lg-2">
+                                <button class="btn btn-default  pull-right" onclick="location.reload()" type="button"><i class="fa fa-recycle" aria-hidden="true"></i>&nbsp;Limpiar Pantalla</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>        
+        </div>
     </div>
 </div>
 

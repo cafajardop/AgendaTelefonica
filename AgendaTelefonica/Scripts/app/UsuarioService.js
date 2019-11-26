@@ -19,6 +19,22 @@
         });
         return response;
     };
-}
 
+    this.UpdateUser = function (udusu) {
+        var response = $http({
+            url: UrlSite + "/Persona/UpdUsu/",
+            method: "POST",
+            data:udusu
+        })
+        return response;
+    }
+
+    this.FindPerson = function (tipDoc, numDoc) {
+        var response = $http({
+            url: UrlSite + "/Persona/FndUsu/" + tipDoc +"/"+ numDoc,
+            method: "GET",
+        })
+        return response;
+    }
+}
 DataHttpService.$inject = ['$http'];

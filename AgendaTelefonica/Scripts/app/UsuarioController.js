@@ -18,7 +18,7 @@
         authobj.SegundoNombre = $scope.segundoNombre;
         authobj.PrimerApellido = $scope.primerApellido;
         authobj.SegundoApellido = $scope.segundoApellido;
-        authobj.Sexo = $scope.sexo; 
+        authobj.Sexo = $scope.sexo;
         authobj.DireccionRes = $scope.direccionRes;
         authobj.TelefonoCelular = $scope.telefonoCel;
         authobj.Ciudad = $scope.ciudad;
@@ -43,5 +43,23 @@
             $scope.novalido = err;
         });
     }
+
+    $scope.UpdateUserController = function () {
+        var autobjUpdateModal = {};
+    }
+
+    $scope.GetUsu = function () {
+        debugger;
+        //var autobjGet = {};
+        //autobjGet.TipoDocumento = $scope.tipodocUpd;
+        //autobjGet.NumeroDocumento = $scope.UpdDocumento;
+
+        DataHttpService.FindPerson($scope.tipodocUpd, $scope.UpdDocumento).then(function (resp) {
+            debugger;
+            $scope.authobjupd = resp.data[0];
+        }, function (err) {
+            $scope.novalido = err;
+        });
+    }
 }
-UsuarioController.$inject = ['$scope', '$rootScope', '$location', '$http', 'DataHttpService','growl'];
+UsuarioController.$inject = ['$scope', '$rootScope', '$location', '$http', 'DataHttpService', 'growl'];
