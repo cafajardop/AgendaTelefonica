@@ -74,12 +74,12 @@ namespace _01_Dal.Dal
                     p.Add("@NumeroDocumento", ObjUser.NumeroDocumento, dbType: DbType.String, direction: ParameterDirection.Input);
                     p.Add("@PrimerNombre", ObjUser.PrimerNombre, dbType: DbType.String, direction: ParameterDirection.Input);
                     p.Add("@SegundoNombre", ObjUser.SegundoNombre, dbType: DbType.String, direction: ParameterDirection.Input);
-                    p.Add("@PrimerApellido", ObjUser.PrimerApellido, dbType: DbType.String, direction: ParameterDirection.Input);
-                    p.Add("@SegundoApellido", ObjUser.SegundoApellido, dbType: DbType.String, direction: ParameterDirection.Input);
-                    p.Add("@Sexo", ObjUser.Sexo, dbType: DbType.Int16, direction: ParameterDirection.Input);
-                    p.Add("@DireccionRes", ObjUser.DireccionRes, dbType: DbType.String, direction: ParameterDirection.Input);
-                    p.Add("@TelefonoCelular", ObjUser.TelefonoCelular, dbType: DbType.String, direction: ParameterDirection.Input);
-                    p.Add("@Ciudad", ObjUser.Ciudad, dbType: DbType.Int16, direction: ParameterDirection.Input);
+                    //p.Add("@PrimerApellido", ObjUser.PrimerApellido, dbType: DbType.String, direction: ParameterDirection.Input);
+                    //p.Add("@SegundoApellido", ObjUser.SegundoApellido, dbType: DbType.String, direction: ParameterDirection.Input);
+                    //p.Add("@Sexo", ObjUser.Sexo, dbType: DbType.Int16, direction: ParameterDirection.Input);
+                    //p.Add("@DireccionRes", ObjUser.DireccionRes, dbType: DbType.String, direction: ParameterDirection.Input);
+                    //p.Add("@TelefonoCelular", ObjUser.TelefonoCelular, dbType: DbType.String, direction: ParameterDirection.Input);
+                    //p.Add("@Ciudad", ObjUser.Ciudad, dbType: DbType.Int16, direction: ParameterDirection.Input);
 
                     db.Execute("spActualizaDatos", p, commandType: CommandType.StoredProcedure);
                     resp = true;

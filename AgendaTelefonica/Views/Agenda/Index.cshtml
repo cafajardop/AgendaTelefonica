@@ -33,7 +33,7 @@
                         <div class="row">
                             <div class="col-lg-3">
                                 <label class="" for="Bd">Tip Documento(*)</label>
-                                <select id="Bd" ng-model="tipodocUpd" class="form-control"
+                                <select id="Bd" ng-model="tipodocGet" class="form-control"
                                         ng-options="item.id as item.Descripcion for item  in tipodoc " required>
                                     <option value="">Seleccione</option>
                                 </select>
@@ -119,14 +119,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="panel panel-danger">
+                <div class="panel panel-primary">
                     <div class="panel-heading">Actualizar Datos</div>
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-3">
                                 <label>Tipo Documento</label>
-                                <select id="Bd" ng-model="tipodocUpd" class="form-control"
-                                        ng-options="item.id as item.Descripcion for item  in tipodoc " required>
+                                <select id="Bd" ng-model="tipodocUpdGet" class="form-control"
+                                        ng-options="item.id as item.Descripcion for item  in tipodocUpd " required>
                                     <option value="">Seleccione</option>
                                 </select>
                             </div>
@@ -144,6 +144,13 @@
                                     <input type="text" ng-model="authobjupd.PrimerNombre" class="form-control" id="inlineFormInputGroup" placeholder="Primer Nombre" onkeyup="mayus(this)">
                                 </div>
                             </div>
+                            <div class="col-lg-3">  
+                                <label for="inlineFormInputGroup">Segundo Nombre</label>
+                                <div class="input-group ">
+                                    <div class="input-group-addon"><i class="fa fa-id-card" aria-hidden="true"></i></div>
+                                    <input type="text" ng-model="authobjupd.SegundoNombre" class="form-control" id="inlineFormInputGroup" placeholder="Segundo Nombre" onkeyup="mayus(this)">
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="panel-footer">
@@ -152,8 +159,8 @@
                             <div class="col-lg-2">
                                 <button type="button" ng-click="GetUsu()" class="btn btn-primary"> <i class="fa fa-save" aria-hidden="true"></i> &nbsp; Buscar  </button>
                             </div>
-                            <div class="col-lg-2">
-                                <button type="button" ng-click="GetUsu()" class="btn btn-danger"> <i class="fa fa-save" aria-hidden="true"></i> &nbsp; Actualizar  </button>
+                            <div class="col-lg-2" ng-if="ButtonUpdate==true">
+                                <button type="button" ng-click="UpdateUserController()" class="btn btn-danger"> <i class="fa fa-save" aria-hidden="true"></i> &nbsp; Actualizar  </button>
                             </div>
                             <div class="col-lg-2">
                                 <button class="btn btn-default  pull-right" onclick="location.reload()" type="button"><i class="fa fa-recycle" aria-hidden="true"></i>&nbsp;Limpiar Pantalla</button>

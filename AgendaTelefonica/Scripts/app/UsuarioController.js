@@ -5,6 +5,10 @@
         $scope.tipodoc = data.data;
     });
 
+    DataHttpService.ITip().then(function (data) {
+        $scope.tipodocUpd = data.data;
+    });
+
     // Insertar Usuario
     $scope.InsertarUsr = function () {
         if ($scope.documento == "" || $scope.documento == undefined) {
@@ -12,7 +16,7 @@
             return false;
         }
         var authobj = {};
-        authobj.TipoDocumento = $scope.tipodocUpd;
+        authobj.TipoDocumento = $scope.tipodocGet;
         authobj.NumeroDocumento = $scope.documento;
         authobj.PrimerNombre = $scope.primerNombre;
         authobj.SegundoNombre = $scope.segundoNombre;
@@ -27,7 +31,7 @@
         DataHttpService.InsrtUsu(authobj).then(function (resp) {
             growl.success('Usuario con numero ' + authobj.NumeroDocumento + ' se a creado correctamente!!', { title: 'Exito!' })
             setTimeout(function () {
-                $scope.tipodocUpd = undefined;
+                $scope.tipodocGet = undefined;
                 $scope.documento = undefined;
                 $scope.primerNombre = undefined;
                 $scope.segundoNombre = undefined;
@@ -45,18 +49,52 @@
     }
 
     $scope.UpdateUserController = function () {
-        var autobjUpdateModal = {};
+
+        if ($scope.PrimerNombre == "") {
+            growl.error('Debe ingresar un dato valido en primer nombre', { title: 'Atención!' });
+            return false;
+        }
+        if ($scope.SegundoNombre == "") {
+            growl.error('Debe ingresar un dato valido en segundo nombre', { title: 'Atención!' });
+            return false;
+        }
+
+        var authobjUpdateUsers = {};
+        authobjUpdateUsers.TipoDocumento = $scope.tipodocUpdGet
+        authobjUpdateUsers.NumeroDocumento = $scope.UpdDocumento;
+        authobjUpdateUsers.PrimerNombre = $scope.authobjupd.PrimerNombre;
+        authobjUpdateUsers.SegundoNombre = $scope.authobjupd.SegundoNombre;
+
+
+        DataHttpService.UpdateUser(authobjUpdateUsers).then(function (resp) {
+            growl.success('Usuario Actualizado Correctamente!', { title: 'Exito!' });
+            setTimeout(function () { location.reload(); }, 2000);
+        }, function (err) {
+            $scope.novalido = err;
+        });
     }
 
     $scope.GetUsu = function () {
-        debugger;
-        //var autobjGet = {};
-        //autobjGet.TipoDocumento = $scope.tipodocUpd;
-        //autobjGet.NumeroDocumento = $scope.UpdDocumento;
+        if ($scope.tipodocUpdGet == "" || $scope.tipodocUpdGet == undefined) {
+            growl.error('Debe Ingresar un Tipo de documento Valido', { title: 'Atención!' });
+            return false;
+        }
+        if ($scope.UpdDocumento == "" || $scope.UpdDocumento == undefined) {
+            growl.error('Debe Ingresar un Numero de documento Valido', { title: 'Atención!' });
+            return false;
+        }
 
-        DataHttpService.FindPerson($scope.tipodocUpd, $scope.UpdDocumento).then(function (resp) {
+        DataHttpService.FindPerson($scope.tipodocUpdGet, $scope.UpdDocumento).then(function (resp) {
             debugger;
-            $scope.authobjupd = resp.data[0];
+            if (resp.data[0] == null) {
+                growl.warning('Usuario No existe', { title: 'Atención!' });
+                setTimeout(function () { $scope.tipodocUpdGet = undefined; $scope.UpdDocumento = undefined; }, 2000);
+                return false;
+            }
+            else {
+                $scope.authobjupd = resp.data[0];
+                $scope.ButtonUpdate = true;
+            }
         }, function (err) {
             $scope.novalido = err;
         });
